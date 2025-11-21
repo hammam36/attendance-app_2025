@@ -1,41 +1,38 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:attendance_app/core/theme/app_theme.dart';
 import 'package:attendance_app/ui/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
   try {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-        // Add your own Firebase project configuration from google-services.json
-        apiKey: 'AIzaSyBJckaRlMOqVd90pZu5hYcIwWZsi0LMWBM', // api_key
-        appId:
-            '1:278759998607:android:515c585abb88382f8d1cfa', // mobilesdk_app_id
-        messagingSenderId: '278759998607', // project_number
-        projectId: 'attendance-app-1252e', // project_id
+        apiKey: 'AIzaSyBJckaRlMOqVd90pZu5hYcIwWZsi0LMWBM',
+        appId: '1:278759998607:android:515c585abb88382f8d1cfa',
+        messagingSenderId: '278759998607',
+        projectId: 'attendance-app-1252e',
       ),
     );
-    // Firebase connection success
-    print("Firebase Terhubung ke:");
-    print("API Key: ${Firebase.app().options.apiKey}");
-    print("Project ID: ${Firebase.app().options.projectId}");
+    print("Firebase Terhubung: ${Firebase.app().options.projectId}");
   } catch (e) {
-    // Firebase connection failed
     print("Firebase gagal terhubung: $e");
   }
-  // runApp(const HomeScreen());
-  runApp(const TestApp());
+  
+  runApp(const AttendanceApp());
 }
 
-class TestApp extends StatelessWidget {
-  // Main App
-  const TestApp({super.key}); // Constructor of TestApp clas
+class AttendanceApp extends StatelessWidget {
+  const AttendanceApp({super.key});
 
-  @override // can give information about about your missing override code
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // remove debug banner
-      home: const HomeScreen(), // HomeScreen class
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      home: const HomeScreen(),
+      // home: const SplashScreen(),
     );
   }
 }

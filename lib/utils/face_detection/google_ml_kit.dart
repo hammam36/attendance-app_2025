@@ -1,8 +1,14 @@
-import 'package:attendance_app/utils/face_detection/vision.dart';
+import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 
-// Face recognition using Google ML Kit
 class GoogleMlKit {
-  GoogleMlKit._();
-
-  static final Vision vision = Vision.instance;
+  static FaceDetector get vision {
+    final options = FaceDetectorOptions(
+      enableContours: true,
+      enableClassification: true,
+      enableTracking: true,
+      enableLandmarks: true,
+      performanceMode: FaceDetectorMode.accurate,
+    );
+    return FaceDetector(options: options);
+  }
 }
